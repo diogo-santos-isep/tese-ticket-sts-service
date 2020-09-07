@@ -16,7 +16,7 @@
                     ClientName = "User Management Service",
                     ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "configurations" },
+                    AllowedScopes = { "configurations.service" },
                     AllowedCorsOrigins = {  },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600
@@ -25,7 +25,7 @@
                     ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
                     ClientName = "Back Office Ticket Application",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = { "configurations","user" },
+                    AllowedScopes = { "configurations.service","user.service" },
                     RedirectUris = {"http://localhost:4200/auth-callback"},
                     PostLogoutRedirectUris = {"http://localhost:4200/"},
                     AllowedCorsOrigins = {"http://localhost:4200"},
@@ -39,10 +39,10 @@
             return new List<ApiScope>
             {
                 // backward compat
-                new ApiScope("configurations"),
+                new ApiScope("configurations.service"),
                 
                 // more formal
-                new ApiScope("user"),
+                new ApiScope("user.service"),
             };
         }
 

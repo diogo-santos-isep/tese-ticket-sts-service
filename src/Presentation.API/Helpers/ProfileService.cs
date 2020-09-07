@@ -30,7 +30,7 @@
                         var claims = ResourceOwnerPasswordValidator.GetUserClaims(user);
 
                         //set issued claims to return
-                        context.IssuedClaims = claims.Where(x => context.RequestedClaimTypes.Contains(x.Type)).ToList();
+                        context.IssuedClaims.AddRange(claims.ToList());
                     }
                 }
                 else
@@ -49,7 +49,7 @@
                         {
                             var claims = ResourceOwnerPasswordValidator.GetUserClaims(user);
 
-                            context.IssuedClaims = claims.Where(x => context.RequestedClaimTypes.Contains(x.Type)).ToList();
+                            context.IssuedClaims.AddRange(claims.ToList());
                         }
                     }
                 }
