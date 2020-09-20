@@ -12,20 +12,33 @@
         {
             return new List<Client>(){
                 new Client{
-                    ClientId = "user_service",
-                    ClientName = "User Management Service",
+                    ClientId = "ticket-info-service",
+                    ClientName = "Ticket Management Service",
                     ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "configurations.service" },
+                    AllowedScopes = { "configuration", "user", "department" },
                     AllowedCorsOrigins = {  },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600
                 },new Client{
                     ClientId = "ticket_application",
+                    RequireClientSecret = false,
                     ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
                     ClientName = "Back Office Ticket Application",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = { "configurations.service","user.service" },
+                    AllowedScopes = { "configuration","user","department", "ticket" },
+                    RedirectUris = {"http://localhost:4200/auth-callback"},
+                    PostLogoutRedirectUris = {"http://localhost:4200/"},
+                    AllowedCorsOrigins = {"http://localhost:4200"},
+                    AllowAccessTokensViaBrowser = true,
+                    AccessTokenLifetime = 3600
+                },new Client{
+                    ClientId = "client_ticket_application",
+                    RequireClientSecret = false,
+                    ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
+                    ClientName = "Back Office Ticket Application",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes = { "department","configuration","ticket.client.list", "ticket.create"},
                     RedirectUris = {"http://localhost:4200/auth-callback"},
                     PostLogoutRedirectUris = {"http://localhost:4200/"},
                     AllowedCorsOrigins = {"http://localhost:4200"},
@@ -38,11 +51,12 @@
         {
             return new List<ApiScope>
             {
-                // backward compat
-                new ApiScope("configurations.service"),
-                
-                // more formal
-                new ApiScope("user.service"),
+                new ApiScope("configuration"),
+                new ApiScope("user"),
+                new ApiScope("ticket.client.list"),
+                new ApiScope("ticket.create"),
+                new ApiScope("ticket"),
+                new ApiScope("department"),
             };
         }
 

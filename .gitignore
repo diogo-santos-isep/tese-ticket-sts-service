@@ -13,3 +13,4 @@
 /src/Models.Domain/obj
 /src/Presentation.API/bin/Debug/netcoreapp3.1
 /src/Presentation.API/obj
+/.vs/sts-service/DesignTimeBuild
