@@ -26,7 +26,7 @@
                     ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
                     ClientName = "Back Office Ticket Application",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = { "configuration","user","department", "ticket" },
+                    AllowedScopes = { "configuration","user","department", "ticket", "ticket.list" },
                     RedirectUris = {"http://localhost:4200/auth-callback"},
                     PostLogoutRedirectUris = {"http://localhost:4200/"},
                     AllowedCorsOrigins = {"http://localhost:4200"},
@@ -38,7 +38,7 @@
                     ClientSecrets = new List<Secret>{new Secret("secret".Sha512()) },
                     ClientName = "Back Office Ticket Application",
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "department","configuration","ticket.client.list", "ticket.create"},
+                    AllowedScopes = { "department","configuration","ticket.client", "ticket.create"},
                     RedirectUris = {"http://localhost:4200/auth-callback"},
                     PostLogoutRedirectUris = {"http://localhost:4200/"},
                     AllowedCorsOrigins = {"http://localhost:4200"},
@@ -53,9 +53,10 @@
             {
                 new ApiScope("configuration"),
                 new ApiScope("user"),
-                new ApiScope("ticket.client.list"),
+                new ApiScope("ticket.client"),
                 new ApiScope("ticket.create"),
                 new ApiScope("ticket"),
+                new ApiScope("ticket.list"),
                 new ApiScope("department"),
             };
         }

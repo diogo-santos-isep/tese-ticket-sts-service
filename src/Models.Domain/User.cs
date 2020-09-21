@@ -11,11 +11,13 @@
         public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
         public bool IsActive { get; set; } = true;
+        public string Password { get; set; }
         public string Photo { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
         public string Department_Id { get; set; }
+        public string Department_Description { get; set; }
+
         public ERole Role { get; set; }
 
         public override bool Equals(object obj)
